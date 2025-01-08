@@ -23,7 +23,7 @@ public class Animal {
             throw new IllegalArgumentException("Distance can't be negative.");
         }
 
-        System.out.printf("%s run %.2f meters.\n", name == null ? getClass().getName() : name, distance);
+        System.out.printf("%s run %.2f meters." + System.lineSeparator(), name == null ? getClass().getSimpleName() : name, distance);
     }
 
     /**
@@ -34,7 +34,7 @@ public class Animal {
             throw new IllegalArgumentException("Distance can't be negative.");
         }
 
-        System.out.printf("%s swam %.2f meters.\n", name == null ? getClass().getName() : name, distance);
+        System.out.printf("%s swam %.2f meters." + System.lineSeparator(), name == null ? getClass().getSimpleName() : name, distance);
     }
 
     public String getName() {

@@ -18,14 +18,11 @@ public class Dog extends Animal {
      */
     @Override
     public void run(double distance) {
-        String displayingName = getName() == null ? getClass().getSimpleName() : getName();
-
-        if (distance < 0) {
-            throw new IllegalArgumentException("Distance can't be negative.");
-        } else if (distance > MAX_RUN_DISTANCE) {
-            System.out.println(displayingName + " can't run more than " + MAX_RUN_DISTANCE + " meters.");
+        if (distance > MAX_RUN_DISTANCE) {
+            String displayingName = getName() == null ? getClass().getSimpleName() : getName();
+            System.out.printf("%s can't run more than %.2f meters." + System.lineSeparator(), displayingName, MAX_RUN_DISTANCE);
         } else {
-            System.out.println(displayingName + " run " + distance + " meters.");
+            super.run(distance);
         }
     }
 
@@ -34,14 +31,11 @@ public class Dog extends Animal {
      */
     @Override
     public void swim(double distance) {
-        String displayingName = getName() == null ? getClass().getSimpleName() : getName();
-
-        if (distance < 0) {
-            throw new IllegalArgumentException("Distance can't be negative.");
-        } else if (distance > MAX_SWIM_DISTANCE) {
-            System.out.println(displayingName + " can't swim more than " + MAX_SWIM_DISTANCE + " meters.");
+        if (distance > MAX_SWIM_DISTANCE) {
+            String displayingName = getName() == null ? getClass().getSimpleName() : getName();
+            System.out.printf("%s can't swim more than %.2f meters.\n", displayingName, MAX_SWIM_DISTANCE);
         } else {
-            System.out.println();
+            super.swim(distance);
         }
     }
 

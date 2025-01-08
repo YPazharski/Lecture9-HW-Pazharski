@@ -17,14 +17,11 @@ public class Cat extends Animal {
      */
     @Override
     public void run(double distance) {
-        String displayingName = getName() == null ? getClass().getSimpleName() : getName();
-
-        if (distance < 0) {
-            throw new IllegalArgumentException("Distance can't be negative.");
-        } else if (distance > MAX_RUN_DISTANCE) {
-            System.out.println(displayingName + " can't run more than " + MAX_RUN_DISTANCE + " meters.");
+        if (distance > MAX_RUN_DISTANCE) {
+            String displayingName = getName() == null ? getClass().getSimpleName() : getName();
+            System.out.printf("%s can't run more than %.2f meters." + System.lineSeparator(), displayingName, MAX_RUN_DISTANCE);
         } else {
-            System.out.println(displayingName + " run " + distance + " meters.");
+            super.run(distance);
         }
     }
 

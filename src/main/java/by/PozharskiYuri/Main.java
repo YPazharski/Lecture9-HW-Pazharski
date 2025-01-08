@@ -1,15 +1,112 @@
 package by.PozharskiYuri;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Main {
 
     public static void main(String[] args) {
-        //System.out.println("Nothing happens in main method of " + Main.class.getName() + " class");
+        Animal[] allAnimals = getAnimals();
+
+        System.out.println("\nOUR ANIMALS:\n");
+        printAnimals(allAnimals);
+
+        System.out.println("\nTHEIR NAMES:\n");
+        printAnimalsNames(allAnimals);
+
+        System.out.println("\nLET'S RUN 0 DISTANCE!\n");
+        askAnimalsRun(0, allAnimals);
+
+        System.out.println("\nLET'S RUN " + Cat.MAX_RUN_DISTANCE + " METERS!\n");
+        askAnimalsRun(Cat.MAX_RUN_DISTANCE, allAnimals);
+
+        System.out.println("\nLET'S RUN " + Dog.MAX_RUN_DISTANCE + " METERS!\n");
+        askAnimalsRun(Dog.MAX_RUN_DISTANCE, allAnimals);
+
+        double bigRunDistance = Dog.MAX_RUN_DISTANCE + Cat.MAX_RUN_DISTANCE + 1;
+        System.out.println("\nLET'S RUN " + bigRunDistance + " METERS!\n");
+        askAnimalsRun(bigRunDistance, allAnimals);
+
+        System.out.println("\nLET'S RUN NEGATIVE DISTANCE!\n");
+        askAnimalsRun(-1, allAnimals);
+
+        System.out.println("\nLET'S SWIM 0 DISTANCE!\n");
+        askAnimalsSwim(0, allAnimals);
+
+        System.out.println("\nLET'S SWIM " + Dog.MAX_SWIM_DISTANCE + " METERS!\n");
+        askAnimalsSwim(Dog.MAX_SWIM_DISTANCE, allAnimals);
+
+        double bigSwimDistance = Dog.MAX_SWIM_DISTANCE + 1;
+        System.out.println("\nLET'S SWIM " + bigSwimDistance + " METERS!\n");
+        askAnimalsSwim(bigSwimDistance, allAnimals);
+
+        System.out.println("\nLET'S SWIM NEGATIVE DISTANCE!\n");
+        askAnimalsSwim(-1, allAnimals);
+    }
+
+    public static Animal @NotNull [] getAnimals() {
         Animal animal = new Animal();
-        Dog dog = new Dog("Dog");
-        Cat cat = new Cat("Cat");
-        System.out.println(animal);
-        System.out.println(dog);
-        System.out.println(cat);
+        Animal namedAnimal = new Animal("Named Animal");
+
+        Dog dog = new Dog();
+        Dog namedDog = new Dog("Named Dog");
+        Animal animalDog = new Dog("Animal Dog");
+
+        Cat cat = new Cat();
+        Cat namedCat = new Cat("Named Cat");
+        Animal animalCat = new Cat("Animal Cat");
+
+        return new Animal[]{
+                animal,
+                namedAnimal,
+                dog,
+                namedDog,
+                animalDog,
+                cat,
+                namedCat,
+                animalCat
+        };
+    }
+
+    public static void printAnimals(Animal... animals) {
+        for (Animal animal : animals) {
+            System.out.println(animal);
+        }
+
+        System.out.println();
+    }
+
+    public static void printAnimalsNames(Animal... animals) {
+        for (Animal animal : animals) {
+            System.out.println(animal.getName());
+        }
+    }
+
+    public static void askAnimalsRun(double distance, @NotNull Animal... animals) {
+        for (Animal animal : animals) {
+            try {
+                animal.run(distance);
+            } catch (IllegalArgumentException e) {
+                System.out.println("OOPS! " + e.getMessage());
+            } catch (NullPointerException e) {
+                System.out.println("Oh! Seems no such an animal nearby.");
+            }
+        }
+
+        System.out.println();
+    }
+
+    public static void askAnimalsSwim(double distance, @NotNull Animal... animals) {
+        for (Animal animal : animals) {
+            try {
+                animal.swim(distance);
+            } catch (IllegalArgumentException e) {
+                System.out.println("OOPS! " + e.getMessage());
+            } catch (NullPointerException e) {
+                System.out.println("Oh! Seems no such an animal nearby.");
+            }
+        }
+
+        System.out.println();
     }
 
 }
