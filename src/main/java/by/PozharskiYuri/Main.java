@@ -52,11 +52,11 @@ public class Main {
         Dog namedDog = new Dog("Named Dog");
         Animal animalDog = new Dog("Animal Dog");
 
-        Cat cat = new Cat();
-        Cat cat2 = new Cat();
-        Cat namedCat = new Cat("Named Cat");
-        Cat namedCat2 = new Cat("Tom");
-        Animal animalCat = new Cat("Animal Cat");
+        Cat cat = new Cat(null, 1);
+        Cat cat2 = new Cat(null, 2);
+        Cat namedCat = new Cat("Named Cat", 3);
+        Cat namedCat2 = new Cat("Tom", 5);
+        Animal animalCat = new Cat("Animal Cat", 8);
 
         return new Animal[]{
                 dog,

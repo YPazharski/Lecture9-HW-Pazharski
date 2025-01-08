@@ -1,21 +1,27 @@
 package by.PozharskiYuri;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.StringJoiner;
+
 public class Cat extends Animal {
 
     public static final double MAX_RUN_DISTANCE = 200; // value in meters
     private static int createdCatsCounter;
+    private int appetite;
 
-    public Cat() {
-        createdCatsCounter++;
-    }
-
-    public Cat(String name) {
+    public Cat(String name, int appetite) {
         super(name);
         createdCatsCounter++;
+        this.appetite = appetite;
     }
 
     public static int getCreatedCatsCounter() {
         return createdCatsCounter;
+    }
+
+    public void eat(@NotNull Eatable eatable) {
+        eatable.decreaseFood(appetite);
     }
 
     /**
@@ -41,6 +47,14 @@ public class Cat extends Animal {
         }
 
         System.out.println(getClass().getSimpleName() + "s can't swim.");
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", getClass().getSimpleName() + " (", ")")
+                .add("Name: " + (getName() == null ? "(no name)" : getName()))
+                .add("Appetite: " + appetite)
+                .toString();
     }
 
 }
