@@ -49,18 +49,18 @@ public class Animal {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Animal animal = (Animal) o;
-        return Objects.equals(name, animal.getName());
+        return name != null && Objects.equals(name, animal.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(name);
+        return 137 * Objects.hashCode(name) ^ getClass().getName().hashCode();
     }
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", getClass().getSimpleName() + "[", "]")
-                .add("name='" + name + "'")
+        return new StringJoiner(", ", getClass().getSimpleName() + " (", ")")
+                .add("Name: " + (name == null ? "(no name)" : name))
                 .toString();
     }
 }
