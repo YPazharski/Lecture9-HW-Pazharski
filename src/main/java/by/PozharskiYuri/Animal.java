@@ -1,37 +1,66 @@
 package by.PozharskiYuri;
 
+import java.util.Objects;
+import java.util.StringJoiner;
+
 public class Animal {
 
-    private final String name;
+    private String name;
+
+    public Animal() {
+
+    }
 
     public Animal(String name) {
         this.name = name;
     }
 
     /**
-     * @param distance дистанция бега в метрах.
+     * @param distance run distance in meters.
      */
     public void run(double distance) {
         if (distance < 0) {
             throw new IllegalArgumentException("Distance can't be negative.");
         }
 
-        System.out.printf("%s пробежал(-а) %.2f метров.\n", name, distance);
+        System.out.printf("%s run %.2f meters.\n", name == null ? getClass().getName() : name, distance);
     }
 
     /**
-     * @param distance дистанция плавания в метрах.
+     * @param distance swim distance in meters.
      */
     public void swim(double distance) {
         if (distance < 0) {
             throw new IllegalArgumentException("Distance can't be negative.");
         }
 
-        System.out.printf("%s проплыл(-а) %.2f метров.\n", name, distance);
+        System.out.printf("%s swam %.2f meters.\n", name == null ? getClass().getName() : name, distance);
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Animal animal = (Animal) o;
+        return Objects.equals(name, animal.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(name);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", getClass().getSimpleName() + "[", "]")
+                .add("name='" + name + "'")
+                .toString();
+    }
 }
