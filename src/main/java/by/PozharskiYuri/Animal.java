@@ -3,7 +3,7 @@ package by.PozharskiYuri;
 import java.util.Objects;
 import java.util.StringJoiner;
 
-public class Animal {
+public abstract class Animal {
 
     private static int createdAnimalsCounter;
     private String name;

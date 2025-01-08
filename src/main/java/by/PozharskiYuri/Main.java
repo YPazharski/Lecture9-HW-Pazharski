@@ -48,25 +48,24 @@ public class Main {
     }
 
     public static Animal @NotNull [] getAnimals() {
-        Animal animal = new Animal();
-        Animal namedAnimal = new Animal("Named Animal");
-
         Dog dog = new Dog();
         Dog namedDog = new Dog("Named Dog");
         Animal animalDog = new Dog("Animal Dog");
 
         Cat cat = new Cat();
+        Cat cat2 = new Cat();
         Cat namedCat = new Cat("Named Cat");
+        Cat namedCat2 = new Cat("Tom");
         Animal animalCat = new Cat("Animal Cat");
 
         return new Animal[]{
-                animal,
-                namedAnimal,
                 dog,
                 namedDog,
                 animalDog,
                 cat,
+                cat2,
                 namedCat,
+                namedCat2,
                 animalCat
         };
     }
