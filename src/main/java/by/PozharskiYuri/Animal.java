@@ -5,13 +5,15 @@ import java.util.StringJoiner;
 
 public class Animal {
 
+    private static int createdAnimalsCounter;
     private String name;
 
     public Animal() {
-
+        createdAnimalsCounter++;
     }
 
     public Animal(String name) {
+        createdAnimalsCounter++;
         this.name = name;
     }
 
@@ -43,6 +45,10 @@ public class Animal {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public static int getCreatedAnimalsCounter() {
+        return createdAnimalsCounter;
     }
 
     @Override

@@ -3,13 +3,19 @@ package by.PozharskiYuri;
 public class Cat extends Animal {
 
     public static final double MAX_RUN_DISTANCE = 200; // value in meters
+    private static int createdCatsCounter;
 
     public Cat() {
-
+        createdCatsCounter++;
     }
 
     public Cat(String name) {
         super(name);
+        createdCatsCounter++;
+    }
+
+    public static int getCreatedCatsCounter() {
+        return createdCatsCounter;
     }
 
     /**

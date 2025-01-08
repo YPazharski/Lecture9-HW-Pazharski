@@ -4,13 +4,15 @@ public class Dog extends Animal {
 
     public static final double MAX_RUN_DISTANCE = 500; // value in meters
     public static final double MAX_SWIM_DISTANCE = 10; // value in meters
+    private static int createdDogsCounter;
 
     public Dog() {
-
+        createdDogsCounter++;
     }
 
     public Dog(String name) {
         super(name);
+        createdDogsCounter++;
     }
 
     /**
@@ -37,6 +39,10 @@ public class Dog extends Animal {
         } else {
             super.swim(distance);
         }
+    }
+
+    public static int getCreatedDogsCounter() {
+        return createdDogsCounter;
     }
 
 }
