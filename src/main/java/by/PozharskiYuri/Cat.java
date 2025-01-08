@@ -8,7 +8,8 @@ public class Cat extends Animal {
 
     public static final double MAX_RUN_DISTANCE = 200; // value in meters
     private static int createdCatsCounter;
-    private int appetite;
+    private final int appetite;
+    private boolean isWellFed;
 
     public Cat(String name, int appetite) {
         super(name);
@@ -21,7 +22,10 @@ public class Cat extends Animal {
     }
 
     public void eat(@NotNull Eatable eatable) {
-        eatable.decreaseFood(appetite);
+        if (eatable.getFood() <= appetite) {
+            eatable.decreaseFood(appetite);
+            isWellFed = true;
+        }
     }
 
     /**
@@ -55,6 +59,10 @@ public class Cat extends Animal {
                 .add("Name: " + (getName() == null ? "(no name)" : getName()))
                 .add("Appetite: " + appetite)
                 .toString();
+    }
+
+    public boolean isWellFed() {
+        return isWellFed;
     }
 
 }

@@ -28,4 +28,9 @@ public class FoodPlate implements Eatable {
         System.out.println("plate: " + food);
     }
 
+    @Override
+    public int getFood() {
+        return food;
+    }
+
 }

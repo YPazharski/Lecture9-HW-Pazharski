@@ -8,4 +8,5 @@ public interface Eatable {
      */
     int decreaseFood(int foodDecrement);
 
+    int getFood();
 }

@@ -25,7 +25,7 @@ public abstract class Animal {
             throw new IllegalArgumentException("Distance can't be negative.");
         }
 
-        System.out.printf("%s run %.2f meters." + System.lineSeparator(), name == null ? getClass().getSimpleName() : name, distance);
+        System.out.printf("%s ran %.2f meters." + System.lineSeparator(), name == null ? getClass().getSimpleName() : name, distance);
     }
 
     /**

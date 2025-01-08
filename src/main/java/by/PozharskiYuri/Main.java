@@ -70,7 +70,7 @@ public class Main {
         };
     }
 
-    public static void printAnimals(Animal... animals) {
+    public static void printAnimals(Animal @NotNull ... animals) {
         for (Animal animal : animals) {
             System.out.println(animal);
         }
@@ -78,13 +78,13 @@ public class Main {
         System.out.println();
     }
 
-    public static void printAnimalsNames(Animal... animals) {
+    public static void printAnimalsNames(Animal @NotNull ... animals) {
         for (Animal animal : animals) {
             System.out.println(animal.getName());
         }
     }
 
-    public static void askAnimalsRun(double distance, @NotNull Animal... animals) {
+    public static void askAnimalsRun(double distance, Animal @NotNull ... animals) {
         for (Animal animal : animals) {
             try {
                 animal.run(distance);
@@ -98,7 +98,7 @@ public class Main {
         System.out.println();
     }
 
-    public static void askAnimalsSwim(double distance, @NotNull Animal... animals) {
+    public static void askAnimalsSwim(double distance, Animal @NotNull ... animals) {
         for (Animal animal : animals) {
             try {
                 animal.swim(distance);
