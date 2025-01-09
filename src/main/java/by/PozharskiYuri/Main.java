@@ -5,11 +5,16 @@ import org.jetbrains.annotations.NotNull;
 public class Main {
 
     public static void main(String[] args) {
+        runAnimalsSportScenario();
+    }
+
+    /**
+     * Runs console scenario to ensure that tasks 1 - 4 of home work are done OK
+     */
+    public static void runAnimalsSportScenario() {
         Animal[] allAnimals = getAnimals();
 
-        System.out.printf(System.lineSeparator() + "%sS WERE CREATED: %d" + System.lineSeparator(), Animal.class.getSimpleName().toUpperCase(), Animal.getCreatedAnimalsCounter());
-        System.out.printf(System.lineSeparator() + "%sS WERE CREATED: %d" + System.lineSeparator(), Cat.class.getSimpleName().toUpperCase(), Cat.getCreatedCatsCounter());
-        System.out.printf(System.lineSeparator() + "%sS WERE CREATED: %d" + System.lineSeparator(), Dog.class.getSimpleName().toUpperCase(), Dog.getCreatedDogsCounter());
+        printAnimalsStaticInfoToConsole();
 
         System.out.println("\nOUR ANIMALS:\n");
         printAnimals(allAnimals);
@@ -45,6 +50,32 @@ public class Main {
 
         System.out.println("\nLET'S SWIM NEGATIVE DISTANCE!\n");
         askAnimalsSwim(-1, allAnimals);
+
+        System.out.println("\nLET'S GIVE NAMES TO UNNAMED ANIMALS AND COUNT ALL OF THEM AGAIN!!\n");
+        giveNamesToAnimals(allAnimals);
+        printAnimalsNames(allAnimals);
+        printAnimals(allAnimals);
+        printAnimalsStaticInfoToConsole();
+    }
+
+    public static void giveNamesToAnimals(Animal @NotNull ... animals) {
+        String[] animalNames = {"Barsik", "Snezhok", "Pirozhok", "Rudy", "Rusty", "Ryzhik", "Aqua", "Bantik"};
+        int i = 0;
+        for (Animal animal : animals) {
+            if (animal.getName() == null) {
+                i %= animalNames.length;
+                String name = animalNames[i];
+                animal.setName(name);
+                i++;
+            }
+
+        }
+    }
+
+    public static void printAnimalsStaticInfoToConsole() {
+        System.out.printf(System.lineSeparator() + "%sS WERE CREATED: %d" + System.lineSeparator(), Animal.class.getSimpleName().toUpperCase(), Animal.getCreatedAnimalsCounter());
+        System.out.printf(System.lineSeparator() + "%sS WERE CREATED: %d" + System.lineSeparator(), Cat.class.getSimpleName().toUpperCase(), Cat.getCreatedCatsCounter());
+        System.out.printf(System.lineSeparator() + "%sS WERE CREATED: %d" + System.lineSeparator(), Dog.class.getSimpleName().toUpperCase(), Dog.getCreatedDogsCounter());
     }
 
     public static Animal @NotNull [] getAnimals() {
@@ -82,6 +113,8 @@ public class Main {
         for (Animal animal : animals) {
             System.out.println(animal.getName());
         }
+
+        System.out.println();
     }
 
     public static void askAnimalsRun(double distance, Animal @NotNull ... animals) {
