@@ -22,7 +22,7 @@ public class Cat extends Animal {
     }
 
     public void eat(@NotNull Eatable eatable) {
-        if (eatable.getFood() <= appetite) {
+        if (!isWellFed && eatable.getFood() >= appetite) {
             eatable.decreaseFood(appetite);
             isWellFed = true;
         }
@@ -37,6 +37,7 @@ public class Cat extends Animal {
             String displayingName = getName() == null ? getClass().getSimpleName() : getName();
             System.out.printf("%s can't run more than %.2f meters." + System.lineSeparator(), displayingName, MAX_RUN_DISTANCE);
         } else {
+            isWellFed = false;
             super.run(distance);
         }
     }
@@ -50,7 +51,7 @@ public class Cat extends Animal {
             throw new IllegalArgumentException("Distance can't be negative.");
         }
 
-        System.out.println(getClass().getSimpleName() + "s can't swim.");
+        System.out.println(getName() + " does not want to swim.");
     }
 
     @Override
@@ -58,6 +59,7 @@ public class Cat extends Animal {
         return new StringJoiner(", ", getClass().getSimpleName() + " (", ")")
                 .add("Name: " + (getName() == null ? "(no name)" : getName()))
                 .add("Appetite: " + appetite)
+                .add("Is well fed: " + isWellFed)
                 .toString();
     }
 

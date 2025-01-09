@@ -14,6 +14,9 @@ public class FoodPlate implements Eatable {
 
     @Override
     public int decreaseFood(int foodDecrement) {
+        if (foodDecrement < 0) {
+            throw new IllegalArgumentException("Food decrement can't be negative.");
+        }
         if (foodDecrement >= food) {
             foodDecrement = food;
             food = 0;
@@ -24,8 +27,17 @@ public class FoodPlate implements Eatable {
         return foodDecrement;
     }
 
+    @Override
+    public void increaseFood(int foodIncrement) {
+        if (foodIncrement < 0) {
+            throw new IllegalArgumentException("Food increment can't be negative.");
+        }
+
+        food += foodIncrement;
+    }
+
     public void info() {
-        System.out.println("plate: " + food);
+        System.out.println("Food remained: " + food);
     }
 
     @Override
@@ -33,4 +45,10 @@ public class FoodPlate implements Eatable {
         return food;
     }
 
+    @Override
+    public String toString() {
+        return "FoodPlate{" +
+                "food=" + food +
+                '}';
+    }
 }
