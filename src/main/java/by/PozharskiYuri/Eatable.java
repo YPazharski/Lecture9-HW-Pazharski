@@ -1,5 +1,8 @@
 package by.PozharskiYuri;
 
+/**
+ * Implemented in classes describing objects that can be eaten.
+ */
 public interface Eatable {
 
     /**
