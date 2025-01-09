@@ -36,10 +36,6 @@ public class FoodPlate implements Eatable {
         food += foodIncrement;
     }
 
-    public void info() {
-        System.out.println("Food remained: " + food);
-    }
-
     @Override
     public int getFood() {
         return food;

@@ -27,7 +27,7 @@ public class Main {
         FoodPlate whitePlate = new FoodPlate(5);
         FoodPlate silverPlate = new FoodPlate(16);
 
-        for (Cat cat: cats) {
+        for (Cat cat : cats) {
             System.out.printf("%S'S INFO BEFORE AN ATTEMPT TO EAT:" + System.lineSeparator(), cat.getName());
             System.out.println(cat);
             System.out.printf("FOOD CONTAINERS' INFO BEFORE %S ATTEMPT TO EAT:" + System.lineSeparator(), cat.getName());
@@ -48,7 +48,7 @@ public class Main {
         System.out.println();
         System.out.println("LETS TRY TO FEED REMAINED HUNGRY CATS...");
 
-        for (Cat cat: cats) {
+        for (Cat cat : cats) {
             if (!cat.isWellFed()) {
                 System.out.printf("Hungry %s is trying to eat from container #%d with %d remained food..." + System.lineSeparator(), cat.getName(), System.identityHashCode(silverPlate), silverPlate.getFood());
                 cat.eat(silverPlate);
