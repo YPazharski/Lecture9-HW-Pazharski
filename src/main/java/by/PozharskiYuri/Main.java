@@ -31,25 +31,23 @@ public class Main {
             System.out.printf("%S'S INFO BEFORE AN ATTEMPT TO EAT:" + System.lineSeparator(), cat.getName());
             System.out.println(cat);
             System.out.printf("FOOD CONTAINERS' INFO BEFORE %S ATTEMPT TO EAT:" + System.lineSeparator(), cat.getName());
-            System.out.printf("Food container #%d. Food remained: %d" + System.lineSeparator(), System.identityHashCode(whitePlate), whitePlate.getFood());
-            System.out.printf("Food container #%d. Food remained: %d" + System.lineSeparator(), System.identityHashCode(silverPlate), silverPlate.getFood());
+            printEatablesToConsole(whitePlate, silverPlate);
             System.out.println();
             cat.eat(silverPlate.getFood() > whitePlate.getFood() ? silverPlate : whitePlate);
             System.out.printf("%S'S INFO AFTER AN ATTEMPT TO EAT:" + System.lineSeparator(), cat.getName());
             System.out.println(cat);
             System.out.printf("FOOD CONTAINERS' INFO AFTER %S ATTEMPT TO EAT:" + System.lineSeparator(), cat.getName());
-            System.out.printf("Food container #%d. Food remained: %d" + System.lineSeparator(), System.identityHashCode(whitePlate), whitePlate.getFood());
-            System.out.printf("Food container #%d. Food remained: %d" + System.lineSeparator(), System.identityHashCode(silverPlate), silverPlate.getFood());
+            printEatablesToConsole(whitePlate, silverPlate);
             System.out.println();
             System.out.println();
         }
 
         System.out.println("LETS REPLACE ALL REMAINED FOOD FROM ONE CONTAINER TO ANOTHER...");
         silverPlate.increaseFood(whitePlate.decreaseFood(whitePlate.getFood()));
-        System.out.printf("Food container #%d. Food remained: %d" + System.lineSeparator(), System.identityHashCode(whitePlate), whitePlate.getFood());
-        System.out.printf("Food container #%d. Food remained: %d" + System.lineSeparator(), System.identityHashCode(silverPlate), silverPlate.getFood());
-
+        printEatablesToConsole(whitePlate, silverPlate);
+        System.out.println();
         System.out.println("LETS TRY TO FEED REMAINED HUNGRY CATS...");
+
         for (Cat cat: cats) {
             if (!cat.isWellFed()) {
                 System.out.printf("Hungry %s is trying to eat from container #%d with %d remained food..." + System.lineSeparator(), cat.getName(), System.identityHashCode(silverPlate), silverPlate.getFood());
@@ -57,14 +55,24 @@ public class Main {
             }
         }
 
+        System.out.println();
         System.out.println("OUR PLATES NOW:");
         System.out.println();
-        System.out.printf("Food container #%d. Food remained: %d" + System.lineSeparator(), System.identityHashCode(whitePlate), whitePlate.getFood());
-        System.out.printf("Food container #%d. Food remained: %d" + System.lineSeparator(), System.identityHashCode(silverPlate), silverPlate.getFood());
+        printEatablesToConsole(whitePlate, silverPlate);
         System.out.println(System.lineSeparator());
         System.out.println("OUR CATS NOW:");
         System.out.println();
         printAnimals(cats);
+    }
+
+    public static void printEatablesToConsole(Eatable @NotNull ... eatables) {
+        for (Eatable eatable : eatables) {
+            try {
+                System.out.printf("Food container #%d. Food remained: %d" + System.lineSeparator(), System.identityHashCode(eatable), eatable.getFood());
+            } catch (NullPointerException e) {
+                System.out.println("Oh! Seems no such a food container nearby.");
+            }
+        }
     }
 
     /**
@@ -121,6 +129,10 @@ public class Main {
         String[] animalNames = {"Barsik", "Snezhok", "Pirozhok", "Rudy", "Rusty", "Ryzhik", "Aqua", "Bantik"};
         int i = 0;
         for (Animal animal : animals) {
+            if (animal == null) {
+                continue;
+            }
+
             if (animal.getName() == null) {
                 i %= animalNames.length;
                 String name = animalNames[i];
