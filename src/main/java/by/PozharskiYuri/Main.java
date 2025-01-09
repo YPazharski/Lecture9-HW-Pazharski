@@ -6,6 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         runAnimalsSportScenario();
+
     }
 
     /**
@@ -103,7 +104,11 @@ public class Main {
 
     public static void printAnimals(Animal @NotNull ... animals) {
         for (Animal animal : animals) {
-            System.out.println(animal);
+            try {
+                System.out.println(animal);
+            } catch (NullPointerException e) {
+                System.out.println("Oh! Seems no such an animal nearby.");
+            }
         }
 
         System.out.println();
@@ -111,7 +116,11 @@ public class Main {
 
     public static void printAnimalsNames(Animal @NotNull ... animals) {
         for (Animal animal : animals) {
-            System.out.println(animal.getName());
+            try {
+                System.out.println(animal.getName());
+            } catch (NullPointerException e) {
+                System.out.println("Oh! Seems no such an animal nearby.");
+            }
         }
 
         System.out.println();
