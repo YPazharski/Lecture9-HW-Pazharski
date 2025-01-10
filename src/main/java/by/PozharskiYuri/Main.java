@@ -7,6 +7,46 @@ public class Main {
     public static void main(String[] args) {
         runAnimalsSportScenario();
         runCatsEatScenario();
+        runPaymentScenario();
+    }
+
+    /**
+     * Runs console scenario to ensure that task 6 of homework is done OK.
+     */
+    public static void runPaymentScenario() {
+        Wallet myWallet = new Wallet("MyWallet", 300);
+        Payment myPayment = new Payment(myWallet);
+        System.out.println(myPayment);
+        Payment.Item bread = myPayment.new Item("2x Bread", 3);
+        Payment.Item butter = myPayment.new Item("Butter", 5);
+        Payment.Item pants = myPayment.new Item("Pants", 40);
+        Payment.Item catFood = myPayment.new Item("Cat food 10 kg", 199.99);
+        System.out.println(myPayment);
+        tryToPay(bread);
+        tryToPay(bread);
+        tryToPay(butter);
+        tryToPay(pants);
+        tryToPay(catFood);
+        System.out.println(myPayment);
+        Payment.Item bike = myPayment.new Item("Bike", 999.99);
+        tryToPay(bike);
+        System.out.println(myPayment);
+        myWallet.increaseBalance(1000);
+        System.out.println(myWallet);
+        System.out.println(bike);
+        while (catFood.pay()) {
+            System.out.println("Take care of cats!");
+        }
+
+        System.out.println(myPayment);
+    }
+
+    public static void tryToPay(Payment.@NotNull Item item) {
+        if (!item.pay()) {
+            System.out.printf(System.lineSeparator() + "Sorry you could not buy that %s. %s's price: %.2f." + System.lineSeparator(),
+                    item.getDescription(), item.getDescription(), item.getPrice());
+        }
+
     }
 
     /**

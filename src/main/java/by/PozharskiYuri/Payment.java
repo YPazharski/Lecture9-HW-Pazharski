@@ -3,6 +3,7 @@ package by.PozharskiYuri;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Payment {
@@ -10,11 +11,33 @@ public class Payment {
     private final Payable paymentMean;
     private final List<Item> payedItems = new ArrayList<>();
 
+    public Payable getPaymentMean() {
+        return paymentMean;
+    }
+
+    /**
+     * @return payedItems List that can not be modified.
+     */
+    public List<Item> getPayedItems() {
+        return Collections.unmodifiableList(payedItems);
+    }
+
     public Payment(Payable paymentMean) {
         this.paymentMean = paymentMean;
     }
 
-    private class Item {
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "paymentMean=" + paymentMean +
+                ", payedItems=" + payedItems +
+                '}';
+    }
+
+    public class Item {
+
+        private final double price;
+        private String description;
 
         @NotNull
         public String getDescription() {
@@ -25,29 +48,35 @@ public class Payment {
             this.description = description;
         }
 
-        private String description;
-
         public double getPrice() {
             return price;
         }
 
-        private final double price;
+        public Item(@NotNull String description, double price) {
+            if (price < 0) {
+                throw new IllegalArgumentException("Price can not be negative!");
+            }
 
-        /**
-         * @param description of item
-         * @param price price of item
-         * @throws IllegalArgumentException price is more than payment mean can decrease
-         */
-        public Item(@NotNull String description, double price) throws IllegalArgumentException {
-            if (paymentMean.decreaseBalance(price)) {
-                this.description = description;
-                this.price = price;
-            }
-            else {
-                throw new IllegalArgumentException(paymentMean.getName() + " does not nave enough resources to pay " + price + " for [" + description + "]");
-            }
+            this.description = description;
+            this.price = price;
         }
 
+        public boolean pay() {
+            if (paymentMean.decreaseBalance(price)) {
+                payedItems.add(this);
+                return true;
+            }
+
+            return false;
+        }
+
+        @Override
+        public @NotNull String toString() {
+            return "Item{" +
+                    "price=" + price +
+                    ", description='" + description + '\'' +
+                    '}';
+        }
     }
 
 }
