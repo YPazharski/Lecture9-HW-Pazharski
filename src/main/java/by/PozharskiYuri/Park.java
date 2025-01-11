@@ -131,7 +131,7 @@ public class Park {
         }
 
         public void rename(@NotNull String newName) {
-            this.name = name;
+            this.name = newName;
         }
 
         public double getTicketPrice() {
