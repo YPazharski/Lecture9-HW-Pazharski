@@ -2,18 +2,41 @@ package by.PozharskiYuri;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.time.LocalTime;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
         runAnimalsSportScenario();
         runCatsEatScenario();
         runPaymentScenario();
+        runParkScenario();
+    }
+
+    /**
+     * Runs short console scenario to ensure that task 7 of homework is done OK.
+     */
+    public static void runParkScenario() {
+        System.out.println();
+        Park myPark = new Park("myPark", "Raccoon city", LocalTime.of(10, 0), LocalTime.of(22, 0));
+        Park notMyPark = new Park("NotMyPark", "Somewhere", LocalTime.MIDNIGHT, LocalTime.NOON);
+        Park.Attraction firstAttraction = myPark.new Attraction("Attraction1", 12);
+        System.out.println(myPark);
+        myPark.setWorkTime(LocalTime.of(9, 0), LocalTime.of(23, 0));
+        System.out.println(myPark);
+        List<Park.Attraction> myAttractions = myPark.getAttractions();
+        myAttractions.getFirst().setWorkTime(LocalTime.of(12, 0), LocalTime.of(17, 0));
+        //myAttractions.add(notMyPark.new Attraction("ZeroAttraction", 55));  //Won't work... As expected
+        Park.Attraction secondAttraction = myPark.new Attraction("Second attraction", 65, "Some", LocalTime.of(10, 1), LocalTime.of(16, 0));
+        System.out.println(myPark);
     }
 
     /**
      * Runs console scenario to ensure that task 6 of homework is done OK.
      */
     public static void runPaymentScenario() {
+        System.out.println();
         Wallet myWallet = new Wallet("MyWallet", 300);
         Payment myPayment = new Payment(myWallet);
         System.out.println(myPayment);
@@ -53,6 +76,7 @@ public class Main {
      * Runs console scenario to ensure that task 5 of homework is done OK. Lot of drama warning!
      */
     public static void runCatsEatScenario() {
+        System.out.println();
         Cat[] cats = {
                 new Cat("Abby", 1),
                 new Cat("Barsik", 2),
@@ -119,6 +143,7 @@ public class Main {
      * Runs console scenario to ensure that tasks 1 - 4 of homework are done OK
      */
     public static void runAnimalsSportScenario() {
+        System.out.println();
         Animal[] allAnimals = getAnimals();
 
         printAnimalsStaticInfoToConsole();
