@@ -1,4 +1,4 @@
-package by.PozharskiYuri;
+package by.PazharskiYury.Lesson9;
 
 import java.util.Objects;
 import java.util.StringJoiner;

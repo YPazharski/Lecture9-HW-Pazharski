@@ -1,11 +1,11 @@
-package by.PozharskiYuri;
+package by.PazharskiYury.Lesson9;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalTime;
 import java.util.List;
 
-public class Main {
+public class Lesson9Main {
 
     public static void main(String[] args) {
         runAnimalsSportScenario();

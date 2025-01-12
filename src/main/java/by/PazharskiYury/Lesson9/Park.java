@@ -1,4 +1,4 @@
-package by.PozharskiYuri;
+package by.PazharskiYury.Lesson9;
 
 import org.jetbrains.annotations.NotNull;
 

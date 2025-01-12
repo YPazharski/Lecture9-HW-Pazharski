@@ -1,4 +1,4 @@
-package by.PozharskiYuri;
+package by.PazharskiYury.Lesson9;
 
 /**
  * Implemented in classes describing objects that can be used as means of payment

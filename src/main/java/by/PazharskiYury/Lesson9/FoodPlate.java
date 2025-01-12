@@ -1,4 +1,4 @@
-package by.PozharskiYuri;
+package by.PazharskiYury.Lesson9;
 
 public class FoodPlate implements Eatable {
 
