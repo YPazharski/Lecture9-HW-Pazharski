@@ -3,8 +3,6 @@ package by.PazharskiYury.lesson_10;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 public final class Box<T extends Fruit> {
 

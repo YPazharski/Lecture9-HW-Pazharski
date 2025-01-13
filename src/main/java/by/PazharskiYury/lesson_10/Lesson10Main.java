@@ -1,6 +1,5 @@
 package by.PazharskiYury.lesson_10;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Lesson10Main {
@@ -43,6 +42,7 @@ public class Lesson10Main {
         fruitBox.tryAdd(apple);
         fruitBox.tryAdd(fruitApple);
         if (fruitBox.tryAdd(orange)) {
+            System.out.println("OOPS");
             return;
         }
 
@@ -56,7 +56,10 @@ public class Lesson10Main {
         fruitBox2.tryAdd(fruitApple);
         System.out.println(fruitBox2);
 
-        fruitBox2.tryAdd(fruitBox);
+        if (!fruitBox2.tryAdd(fruitBox)) {
+            System.out.println("OOPS");
+            return;
+        }
 
         System.out.println(fruitBox2);
         System.out.println(fruitBox);
