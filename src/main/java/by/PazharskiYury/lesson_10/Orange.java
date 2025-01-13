@@ -2,8 +2,11 @@ package by.PazharskiYury.lesson_10;
 
 public class Orange extends Fruit {
 
-    public Orange(double weight) {
-        super(weight);
+    public static final Double WEIGHT = 1.5;
+
+    @Override
+    public double getWeight() {
+        return WEIGHT;
     }
 
 }

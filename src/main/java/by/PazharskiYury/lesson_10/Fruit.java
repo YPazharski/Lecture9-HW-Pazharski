@@ -2,10 +2,10 @@ package by.PazharskiYury.lesson_10;
 
 public abstract class Fruit {
 
-    double weight;
+    public abstract double getWeight();
 
-    public Fruit(double weight) {
-        this.weight = weight;
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
     }
-
 }
