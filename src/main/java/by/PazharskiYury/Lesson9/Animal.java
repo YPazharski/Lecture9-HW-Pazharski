@@ -1,0 +1,72 @@
+package by.PazharskiYury.Lesson9;
+
+import java.util.Objects;
+import java.util.StringJoiner;
+
+public abstract class Animal {
+
+    private static int createdAnimalsCounter;
+    private String name;
+
+    public Animal() {
+        createdAnimalsCounter++;
+    }
+
+    public Animal(String name) {
+        createdAnimalsCounter++;
+        this.name = name;
+    }
+
+    /**
+     * @param distance run distance in meters.
+     */
+    public void run(double distance) {
+        if (distance < 0) {
+            throw new IllegalArgumentException("Distance can't be negative.");
+        }
+
+        System.out.printf("%s ran %.2f meters." + System.lineSeparator(), name == null ? getClass().getSimpleName() : name, distance);
+    }
+
+    /**
+     * @param distance swim distance in meters.
+     */
+    public void swim(double distance) {
+        if (distance < 0) {
+            throw new IllegalArgumentException("Distance can't be negative.");
+        }
+
+        System.out.printf("%s swam %.2f meters." + System.lineSeparator(), name == null ? getClass().getSimpleName() : name, distance);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public static int getCreatedAnimalsCounter() {
+        return createdAnimalsCounter;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Animal animal = (Animal) o;
+        return name != null && Objects.equals(name, animal.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return 137 * Objects.hashCode(name) ^ getClass().getName().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", getClass().getSimpleName() + " (", ")")
+                .add("Name: " + (name == null ? "(no name)" : name))
+                .toString();
+    }
+}
