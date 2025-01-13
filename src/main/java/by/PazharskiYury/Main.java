@@ -1,4 +1,4 @@
-package by.PozharskiYuri;
+package by.PazharskiYury;
 
 public class Main {
 
