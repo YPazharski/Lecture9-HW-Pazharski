@@ -4,18 +4,18 @@ import java.util.Arrays;
 
 public class MyArrayProcessor {
 
-    public static int sumStringNumbersIn4x4Table(String[][] stringTable) {
+    public static int sumStringNumbersIn4x4Table(String[][] stringTable) throws MyArraySizeException, MyArrayDataException {
         final int EXPECTED_SIZE = 4;
 
         if (stringTable.length != EXPECTED_SIZE) {
-            throw new MyArraySizeException("Expected number of rows: " + EXPECTED_SIZE + ". Your number of rows: "
+            throw new MyArraySizeException("Expected number of rows in \"stringTable\": " + EXPECTED_SIZE + ". Actual number of rows: "
                     + stringTable.length + '!');
         }
 
-        for (String[] row : stringTable) {
-            if (row.length != EXPECTED_SIZE) {
-                throw new MyArraySizeException("Expected number of columns: " + EXPECTED_SIZE + ". Your number of columns: "
-                        + row.length + '!');
+        for (int i = 0; i < stringTable.length; i++) {
+            if (stringTable[i].length != EXPECTED_SIZE) {
+                throw new MyArraySizeException("Expected number of columns in the row " + Arrays.toString(stringTable[i])
+                        + " of index " + i + " in \"stringTable\": " + EXPECTED_SIZE + ". Actual number of columns: " + stringTable[i].length + '!');
             }
 
         }
@@ -27,8 +27,8 @@ public class MyArrayProcessor {
                 try {
                     result += Integer.parseInt(stringTable[row][column]);
                 } catch (NumberFormatException e) {
-                    throw new MyArrayDataException("2D array " + Arrays.deepToString(stringTable)
-                            + " has one or more elements that can't be recognized as integer. One of them is in the ROW "
+                    throw new MyArrayDataException("\"stringTable\" " + Arrays.deepToString(stringTable)
+                            + " has one or more elements that can't be recognized as integer. The first of them is in the ROW "
                             + row + ", COLUMN " + column + '!');
                 }
 
