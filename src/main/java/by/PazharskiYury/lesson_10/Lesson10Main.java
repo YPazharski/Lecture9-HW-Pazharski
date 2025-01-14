@@ -20,9 +20,12 @@ public class Lesson10Main {
         Box<Apple> appleBox = new Box<>();
         System.out.println(appleBox);
 
+        System.out.println(apple);
         appleBox.tryAdd(apple);
-        appleBox.tryAdd(apple);
-        appleBox.tryAdd(apple);
+        System.out.println(apple);
+        System.out.println(appleBox);
+        appleBox.tryAdd(new Apple());
+        appleBox.tryAdd(new Apple());
 
         System.out.println(appleBox);
 
@@ -30,7 +33,7 @@ public class Lesson10Main {
         System.out.println(orangeBox);
 
         orangeBox.tryAdd(orange);
-        orangeBox.tryAdd(orange);
+        orangeBox.tryAdd(new Orange());
 
         System.out.println(orangeBox);
 

@@ -15,11 +15,13 @@ public final class Box<T extends Fruit> {
      * @return true if added, otherwise - false
      */
     public boolean tryAdd(@NotNull T fruit) {
-        if (!fruits.isEmpty() && fruits.getFirst().getClass() != fruit.getClass()) {
+        if (fruit.isBoxed()
+                || (!fruits.isEmpty() && fruits.getFirst().getClass() != fruit.getClass())) {
             return false;
         }
 
         fruits.add(fruit);
+        fruit.setBoxed(true);
         weight += fruit.getWeight();
         return true;
     }
