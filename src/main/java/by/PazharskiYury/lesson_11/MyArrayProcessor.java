@@ -3,13 +3,17 @@ package by.PazharskiYury.lesson_11;
 public class MyArrayProcessor {
 
     public static int sumStringNumbersIn4x4Table(String[][] stringTable) {
-        if (stringTable.length != 4) {
-            throw new MyArraySizeException();
+        final int EXPECTED_SIZE = 4;
+
+        if (stringTable.length != EXPECTED_SIZE) {
+            throw new MyArraySizeException("Expected number of rows: " + EXPECTED_SIZE + ". Your number of rows: "
+                    + stringTable.length + '!');
         }
 
         for (String[] row : stringTable) {
-            if (row.length != 4) {
-                throw new MyArraySizeException();
+            if (row.length != EXPECTED_SIZE) {
+                throw new MyArraySizeException("Expected number of columns: " + EXPECTED_SIZE + ". Your number of columns: "
+                        + row.length + '!');
             }
 
         }
@@ -21,7 +25,7 @@ public class MyArrayProcessor {
                 try {
                     result += Integer.parseInt(stringTable[row][column]);
                 } catch (NumberFormatException e) {
-                    throw new MyArrayDataException(e, row, column);
+                    throw new MyArrayDataException(stringTable[row][column], row, column);
                 }
 
             }
