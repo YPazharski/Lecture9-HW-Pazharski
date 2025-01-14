@@ -1,5 +1,7 @@
 package by.PazharskiYury.lesson_11;
 
+import java.util.Arrays;
+
 public class MyArrayProcessor {
 
     public static int sumStringNumbersIn4x4Table(String[][] stringTable) {
@@ -25,7 +27,9 @@ public class MyArrayProcessor {
                 try {
                     result += Integer.parseInt(stringTable[row][column]);
                 } catch (NumberFormatException e) {
-                    throw new MyArrayDataException(stringTable[row][column], row, column);
+                    throw new MyArrayDataException("2D array " + Arrays.deepToString(stringTable)
+                            + " has one or more elements that can't be recognized as integer. One of them is in the ROW "
+                            + row + ", COLUMN " + column + '!');
                 }
 
             }
