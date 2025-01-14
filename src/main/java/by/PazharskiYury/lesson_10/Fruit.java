@@ -17,8 +17,8 @@ public abstract class Fruit {
         return isBoxed;
     }
 
-    protected void setBoxed(boolean boxed) {
-        isBoxed = boxed;
+    protected void setBoxed() {
+        isBoxed = true;
     }
 
 }

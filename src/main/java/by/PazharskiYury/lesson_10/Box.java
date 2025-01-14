@@ -21,7 +21,7 @@ public final class Box<T extends Fruit> {
         }
 
         fruits.add(fruit);
-        fruit.setBoxed(true);
+        fruit.setBoxed();
         weight += fruit.getWeight();
         return true;
     }
