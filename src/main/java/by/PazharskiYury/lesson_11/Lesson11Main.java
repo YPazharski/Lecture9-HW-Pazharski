@@ -30,11 +30,16 @@ public class Lesson11Main {
                 int result = MyArrayProcessor.sumStringNumbersIn4x4Table(tables[i]);
                 System.out.println("The result was " + result);
             } catch (MyArraySizeException | MyArrayDataException e) {
+                System.out.println("EXCEPTION MESSAGE:");
                 System.out.println(e.getMessage());
+                System.out.println("EXCEPTION STACKTRACE:");
+                e.printStackTrace(System.out);
             } catch (NullPointerException e) {
                 System.out.println("Well... I wasn't told how to process null!!!");
+                System.out.println("EXCEPTION STACKTRACE:");
+                e.printStackTrace(System.out);
             } finally {
-                System.out.println("Finished processing table with index " + i + '.' + System.lineSeparator());
+                System.out.println(System.lineSeparator() + "Finished processing table with index " + i + '.' + System.lineSeparator());
             }
         }
 
