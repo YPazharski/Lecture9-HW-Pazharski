@@ -15,7 +15,7 @@ public class CSVHandler {
             bufferedReader.read(charArray);
             String[] lines = new String(charArray).split(System.lineSeparator());
             String[] header = lines[0].split(String.valueOf(SEPARATOR));
-            Integer[][] data = extractCsvData(lines);
+            int[][] data = extractCsvData(lines);
             return new AppData(header, data);
         } catch (IOException e) {
             System.out.println("Could not read the file (" + csvFile.getAbsolutePath() + "). Exception message:");
@@ -31,7 +31,7 @@ public class CSVHandler {
              BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
 
             String[] header = appData.getHeaderCopy();
-            Integer[][] data = appData.getDataCopy();
+            int[][] data = appData.getDataCopy();
             String csvText = buildCsvText(header, data);
             bufferedWriter.write(csvText);
             return true;
@@ -48,20 +48,23 @@ public class CSVHandler {
         return writeToFile(data, new File("csv.csv"));
     }
 
-    private static Integer[][] extractCsvData(String[] csvLines) {
+    private static int[][] extractCsvData(String[] csvLines) {
         String[][] stringData = Arrays.stream(csvLines)
                 .skip(1)
                 .map(s -> s.split(String.valueOf(SEPARATOR)))
                 .toArray(String[][]::new);
 
-        return Arrays.stream(stringData)
-                .map(row -> Arrays.stream(row)
-                        .map(Integer::parseInt)
-                        .toArray(Integer[]::new))
-                .toArray(Integer[][]::new);
+        int[][] result = new int[stringData.length][stringData[0].length];
+        for (int i = 0; i < stringData.length; i++) {
+            for (int j = 0; j < stringData[i].length; j++) {
+                result[i][j] = Integer.parseInt(stringData[i][j]);
+            }
+        }
+
+        return result;
     }
 
-    private static String buildCsvText(String[] header, Integer[][] data) {
+    private static String buildCsvText(String[] header, int[][] data) {
         StringBuilder writeData = new StringBuilder();
         appendCsvLine(writeData, header);
         writeData.append(System.lineSeparator());
@@ -76,7 +79,17 @@ public class CSVHandler {
         return writeData.toString();
     }
 
-    private static void appendCsvLine(StringBuilder stringBuilder, Object[] csvLine) {
+    private static void appendCsvLine(StringBuilder stringBuilder, String[] csvLine) {
+        int i = 0;
+        while (i < csvLine.length - 1) {
+            stringBuilder.append(csvLine[i]).append(SEPARATOR);
+            i++;
+        }
+
+        stringBuilder.append(csvLine[i]);
+    }
+
+    private static void appendCsvLine(StringBuilder stringBuilder, int[] csvLine) {
         int i = 0;
         while (i < csvLine.length - 1) {
             stringBuilder.append(csvLine[i]).append(SEPARATOR);
