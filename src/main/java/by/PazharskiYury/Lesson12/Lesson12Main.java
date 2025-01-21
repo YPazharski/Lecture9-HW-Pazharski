@@ -5,8 +5,8 @@ import java.io.File;
 public class Lesson12Main {
 
     public static void main(String[] args) {
-        String[] header = new String[] {"one", "two", "three"};
-        Integer[][] data = new Integer[][] {
+        String[] header = new String[]{"one", "two", "three"};
+        Integer[][] data = new Integer[][]{
                 {11, 12, 13},
                 {21, 22, 23},
                 {31, 32, 33}

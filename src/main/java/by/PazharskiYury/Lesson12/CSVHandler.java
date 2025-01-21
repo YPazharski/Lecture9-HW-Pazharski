@@ -2,7 +2,6 @@ package by.PazharskiYury.Lesson12;
 
 import java.io.*;
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 public class CSVHandler {
 
@@ -10,7 +9,7 @@ public class CSVHandler {
 
     public static AppData readFromFile(File csvFile) {
         try (FileReader fileReader = new FileReader(csvFile);
-            BufferedReader bufferedReader = new BufferedReader(fileReader, (int) csvFile.length())) {
+             BufferedReader bufferedReader = new BufferedReader(fileReader, (int) csvFile.length())) {
             char[] charArray = new char[(int) csvFile.length()];
             bufferedReader.read(charArray);
             String[] lines = new String(charArray).split(System.lineSeparator());
