@@ -6,7 +6,7 @@ public class Lesson12Main {
 
     public static void main(String[] args) {
         String[] header = new String[] {"one", "two", "three"};
-        int[][] data = new int[][] {
+        Integer[][] data = new Integer[][] {
                 {11, 12, 13},
                 {21, 22, 23},
                 {31, 32, 33}
@@ -17,6 +17,8 @@ public class Lesson12Main {
 
         File csv = new File("csv.csv");
         System.out.println(CSVHandler.writeToFile(appData, csv));
+        AppData readData = CSVHandler.readFromFile(csv);
+        System.out.println(readData);
     }
 
 }

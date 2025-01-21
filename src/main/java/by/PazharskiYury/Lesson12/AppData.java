@@ -5,9 +5,9 @@ import java.util.Arrays;
 public class AppData {
 
     private final String[] header;
-    private final int[][] data;
+    private final Integer[][] data;
 
-    public AppData(String[] header, int[][] data) {
+    public AppData(String[] header, Integer[][] data) {
         this.header = header;
         this.data = data;
     }
@@ -16,8 +16,8 @@ public class AppData {
         return Arrays.copyOf(header, header.length);
     }
 
-    public int[][] getDataCopy() {
-        return Arrays.stream(data).map(a -> Arrays.copyOf(a, a.length)).toArray(int[][]::new);
+    public Integer[][] getDataCopy() {
+        return Arrays.stream(data).map(a -> Arrays.copyOf(a, a.length)).toArray(Integer[][]::new);
     }
 
     @Override
