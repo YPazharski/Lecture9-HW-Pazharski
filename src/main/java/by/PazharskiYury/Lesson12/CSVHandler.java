@@ -32,8 +32,8 @@ public class CSVHandler {
 
             String[] header = appData.getHeaderCopy();
             Integer[][] data = appData.getDataCopy();
-            String csvString = buildCsvString(header, data);
-            bufferedWriter.write(csvString);
+            String csvText = buildCsvText(header, data);
+            bufferedWriter.write(csvText);
             return true;
         } catch (IOException e) {
             System.out.println("Could not write to file (" + csvFile.getAbsolutePath() + "). Exception message:");
@@ -61,25 +61,29 @@ public class CSVHandler {
                 .toArray(Integer[][]::new);
     }
 
-    private static String buildCsvString(String[] header, Integer[][] data) {
+    private static String buildCsvText(String[] header, Integer[][] data) {
         StringBuilder writeData = new StringBuilder();
-        for (String columnTitle : header) {
-            writeData.append(columnTitle).append(SEPARATOR);
-        }
-
-        writeData.deleteCharAt(writeData.length() - 1);
+        appendCsvLine(writeData, header);
         writeData.append(System.lineSeparator());
-        for (Integer[] row : data) {
-            for (Integer element : row) {
-                writeData.append(element).append(SEPARATOR);
-            }
-
-            writeData.deleteCharAt(writeData.length() - 1);
+        int i = 0;
+        while (i < data.length - 1) {
+            appendCsvLine(writeData, data[i]);
             writeData.append(System.lineSeparator());
+            i++;
         }
 
-        writeData.delete(writeData.lastIndexOf(System.lineSeparator()), writeData.length());
+        appendCsvLine(writeData, data[i]);
         return writeData.toString();
+    }
+
+    private static void appendCsvLine(StringBuilder stringBuilder, Object[] csvLine) {
+        int i = 0;
+        while (i < csvLine.length - 1) {
+            stringBuilder.append(csvLine[i]).append(SEPARATOR);
+            i++;
+        }
+
+        stringBuilder.append(csvLine[i]);
     }
 
 }
