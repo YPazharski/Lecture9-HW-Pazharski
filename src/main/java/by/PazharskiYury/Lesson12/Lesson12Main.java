@@ -9,7 +9,8 @@ public class Lesson12Main {
         int[][] data = new int[][]{
                 {11, 12, 13},
                 {21, 22, 23},
-                {31, 32, 33}
+                {31, 32, 33},
+                {41, 42, 43}
         };
 
         AppData appData = new AppData(header, data);

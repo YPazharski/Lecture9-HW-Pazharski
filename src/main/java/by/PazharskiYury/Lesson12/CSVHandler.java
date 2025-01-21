@@ -17,7 +17,7 @@ public class CSVHandler {
             String[] header = lines[0].split(String.valueOf(SEPARATOR));
             int[][] data = extractCsvData(lines);
             return new AppData(header, data);
-        } catch (IOException e) {
+        } catch (IOException | AppDataFormatException e) {
             System.out.println("Could not read the file (" + csvFile.getAbsolutePath() + "). Exception message:");
             System.out.println(e.getMessage());
             System.out.println("Exception stack trace:");
