@@ -1,10 +1,11 @@
 package by.PazharskiYury.Lesson12;
 
 import java.io.*;
+import java.util.Arrays;
 
 public class CSVHandler {
 
-    private static final char SEPARATOR = ';';
+    public static final char SEPARATOR = ';';
 
     public static boolean readFromFile(File csvFile, AppData appData) {
         try (FileReader fileReader = new FileReader(csvFile);
@@ -21,7 +22,27 @@ public class CSVHandler {
 
     public static boolean writeToFile(AppData appData, File csvFile) {
         try (FileWriter fileWriter = new FileWriter(csvFile);
-             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter, (int) csvFile.length())) {
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+            String[] header = appData.getHeaderCopy();
+            int[][] data = appData.getDataCopy();
+            StringBuilder writeData = new StringBuilder();
+            for (String columnTitle : header) {
+                writeData.append(columnTitle).append(SEPARATOR);
+            }
+
+            writeData.deleteCharAt(writeData.length() - 1);
+            writeData.append(System.lineSeparator());
+            for (int[] row : data) {
+                for (int element : row) {
+                    writeData.append(element).append(SEPARATOR);
+                }
+
+                writeData.deleteCharAt(writeData.length() - 1);
+                writeData.append(System.lineSeparator());
+            }
+
+            writeData.delete(writeData.lastIndexOf(System.lineSeparator()), writeData.length() - 1);
+            bufferedWriter.write(writeData.toString());
             return true;
         } catch (IOException e) {
             System.out.println("Could not write to file (" + csvFile.getAbsolutePath() + "). Exception message:");

@@ -14,6 +14,9 @@ public class Lesson12Main {
 
         AppData appData = new AppData(header, data);
         System.out.println(appData);
+
+        File csv = new File("csv.csv");
+        System.out.println(CSVHandler.writeToFile(appData, csv));
     }
 
 }
