@@ -19,6 +19,7 @@ public class Lesson12Main {
         System.out.println(CSVHandler.writeToFile(appData, csv));
         AppData readData = CSVHandler.readFromFile(csv);
         System.out.println(readData);
+        System.out.println(CSVHandler.save(readData));
     }
 
 }
