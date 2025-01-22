@@ -18,8 +18,7 @@ public class TelephoneBook {
 
         if (data.containsKey(name)) {
             return data.get(name).add(phoneNumber);
-        }
-        else {
+        } else {
             data.put(name, new HashSet<>());
             data.get(name).add(phoneNumber);
             return true;
@@ -32,7 +31,7 @@ public class TelephoneBook {
     }
 
     private boolean phoneNumberIsCorrect(String phoneNumber) {
-        return  phoneNumber.matches("^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$");
+        return phoneNumber.matches("^[+]?[(]?[0-9]{3}[)]?[-\\s.]?[0-9]{3}[-\\s.]?[0-9]{4,6}$");
     }
 
 }

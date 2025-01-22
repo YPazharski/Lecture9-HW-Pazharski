@@ -9,6 +9,35 @@ import net.datafaker.*;
 public class Lesson13Main {
 
     public static void main(String[] args) {
+        runArrayScenario();
+        runTelephoneBookScenario();
+    }
+
+    public static void runTelephoneBookScenario() {
+        Faker faker = new Faker();
+        String repeatingName = faker.futurama().character();
+        String repeatingPhone = faker.phoneNumber().phoneNumber();
+        TelephoneBook telephoneBook = new TelephoneBook();
+        System.out.println(telephoneBook.add(repeatingName, repeatingPhone));
+        System.out.println(telephoneBook.add(repeatingName, repeatingPhone));
+        System.out.println(telephoneBook.add(repeatingName, faker.phoneNumber().phoneNumber()));
+        System.out.println(telephoneBook.add(repeatingName, faker.phoneNumber().phoneNumber()));
+        System.out.println("Phones of " + repeatingName + ':');
+        System.out.println(telephoneBook.get(repeatingName));
+        for (int i = 0; i < 1000; i++) {
+            telephoneBook.add(faker.futurama().character(), faker.phoneNumber().phoneNumber());
+        }
+
+        String name;
+        for (int i = 0; i < 1000; i++) {
+            name = faker.futurama().character();
+            System.out.println("Phones of " + name + ':');
+            System.out.println(telephoneBook.get(name));
+            System.out.println();
+        }
+    }
+
+    public static void runArrayScenario() {
         String[] strings = get20NonUniqueStrings();
         System.out.println(Arrays.toString(strings));
         Map<String, Integer> map = getHashMapWithWithCountedEntries(strings);
