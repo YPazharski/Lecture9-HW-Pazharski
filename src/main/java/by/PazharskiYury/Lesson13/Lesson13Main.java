@@ -15,7 +15,8 @@ public class Lesson13Main {
 
         System.out.println();
         for (Map.Entry<String, Integer> kv : map.entrySet()) {
-            System.out.printf("\"%s\" string had %d entries in the array.", kv.getKey(), kv.getValue());
+            System.out.printf("\"%s\" string has %d %s in the array.", kv.getKey(), kv.getValue(),
+                    kv.getValue() == 1 ? "entry" : "entries");
             System.out.println();
         }
     }
